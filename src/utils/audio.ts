@@ -9,8 +9,11 @@ const SOUND_PATHS = {
 
 let bgm: Howl | null = null;
 let sfx: Record<string, Howl> = {};
+let isInitialized = false;
 
 export const initAudio = () => {
+  if (isInitialized) return;
+
   sfx = {
     ding: new Howl({ src: [SOUND_PATHS.ding] }),
     tap: new Howl({ src: [SOUND_PATHS.tap] }),
@@ -20,7 +23,10 @@ export const initAudio = () => {
     src: [SOUND_PATHS.bgm],
     loop: true,
     html5: true, // Use HTML5 Audio for large files like music
+    autoplay: false,
   });
+
+  isInitialized = true;
 };
 
 export const playSound = (sound: 'ding' | 'tap', volume: number) => {
@@ -32,6 +38,13 @@ export const playSound = (sound: 'ding' | 'tap', volume: number) => {
 export const playBGM = (volume: number) => {
   if (!bgm) return;
   bgm.volume(volume / 100);
+  if (!bgm.playing()) {
+    bgm.play();
+  }
+};
+
+export const resumeBGM = () => {
+  if (!bgm) return;
   if (!bgm.playing()) {
     bgm.play();
   }
