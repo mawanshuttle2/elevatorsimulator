@@ -1,0 +1,5 @@
+{
+  "name": "Elevator Simulator",
+  "description": "A high-fidelity 2D Elevator Management Simulator",
+  "requestFramePermissions": []
+}
