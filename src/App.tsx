@@ -90,7 +90,14 @@ export default function App() {
   }, [state.xp, state.unlockedModels, state.equippedModel, state.unlockedLevels, state.difficulty, state.settings, state.currentLevel]);
 
   return (
-    <div className="w-full h-screen bg-black overflow-hidden font-sans selection:bg-blue-500/30">
+    <div 
+      className="w-full h-screen bg-black overflow-hidden font-sans selection:bg-blue-500/30 bg-cover bg-center transition-all duration-700"
+      style={{
+        backgroundImage: state.screen === 'GAME_ACTIVE' 
+          ? 'url(/assets/images/bg-game.jpg)' 
+          : 'url(/assets/images/bg-menu.jpg)'
+      }}
+    >
       <AnimatePresence mode="wait">
         {state.screen === 'MAIN_MENU' && <MainMenu key="main" state={state} setState={setState} />}
         {state.screen === 'STAGE_SELECT' && <StageSelect key="stage" state={state} setState={setState} />}

@@ -22,7 +22,6 @@ export const initAudio = () => {
   bgm = new Howl({
     src: [SOUND_PATHS.bgm],
     loop: true,
-    html5: true, // Use HTML5 Audio for large files like music
     autoplay: false,
   });
 

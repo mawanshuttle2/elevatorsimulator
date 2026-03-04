@@ -45,7 +45,7 @@ export default function StageSelect({ state, setState }: Props) {
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -50 }}
-      className="flex flex-col h-full w-full bg-slate-950 text-white p-8 overflow-y-auto"
+      className="flex flex-col h-full w-full bg-slate-950/60 backdrop-blur-md text-white p-8 overflow-y-auto"
     >
       <div className="flex items-center justify-between mb-8">
         <button 

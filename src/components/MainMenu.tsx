@@ -21,7 +21,7 @@ export default function MainMenu({ state, setState }: Props) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="flex flex-col items-center justify-center h-full w-full bg-slate-950 text-white"
+      className="flex flex-col items-center justify-center h-full w-full bg-slate-950/60 backdrop-blur-md text-white"
     >
       <div className="text-center mb-12">
         <h1 className="text-6xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-purple-600 mb-4">

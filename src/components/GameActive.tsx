@@ -39,7 +39,7 @@ export default function GameActive({ state, setState }: Props) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className={`relative flex flex-col h-full w-full ${levelConfig.bg} text-white overflow-hidden`}
+      className="relative flex flex-col h-full w-full bg-slate-950/40 backdrop-blur-sm text-white overflow-hidden"
     >
       {/* HUD */}
       <div className="absolute top-0 left-0 right-0 p-4 flex justify-between items-start z-50 pointer-events-none">
@@ -102,12 +102,19 @@ export default function GameActive({ state, setState }: Props) {
             {Array.from({ length: levelConfig.floors }).map((_, i) => {
               const floorNum = levelConfig.floors - 1 - i;
               return (
-                <div key={i} className="relative w-full flex-1 border-b-4 border-slate-800 flex items-end">
+                <div 
+                  key={i} 
+                  className="relative w-full flex-1 border-b-4 border-slate-900 flex items-end bg-cover bg-center"
+                  style={{ backgroundImage: `url(/assets/images/floors/floor-${floorNum}.jpg)` }}
+                >
+                  {/* Dark overlay to ensure text and game elements remain visible */}
+                  <div className="absolute inset-0 bg-slate-950/40" />
+                  
                   {/* Floor Label */}
-                  <div className="absolute left-2 bottom-2 text-slate-600 font-black text-4xl opacity-50 select-none">
+                  <div className="absolute left-2 bottom-2 text-white font-black text-4xl opacity-60 select-none z-10 drop-shadow-lg">
                     {floorNum === 0 ? 'G' : floorNum}
                   </div>
-                  <div className="absolute right-2 bottom-2 text-slate-600 font-black text-4xl opacity-50 select-none">
+                  <div className="absolute right-2 bottom-2 text-white font-black text-4xl opacity-60 select-none z-10 drop-shadow-lg">
                     {floorNum === 0 ? 'G' : floorNum}
                   </div>
                 </div>

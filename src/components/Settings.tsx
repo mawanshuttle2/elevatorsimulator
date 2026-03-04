@@ -29,7 +29,7 @@ export default function Settings({ state, setState }: Props) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="flex flex-col h-full w-full bg-slate-950 text-white p-8"
+      className="flex flex-col h-full w-full bg-slate-950/60 backdrop-blur-md text-white p-8"
     >
       <div className="flex items-center justify-between mb-12">
         <button 

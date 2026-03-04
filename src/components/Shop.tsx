@@ -40,7 +40,7 @@ export default function Shop({ state, setState }: Props) {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 1.05 }}
-      className="flex flex-col h-full w-full bg-slate-950 text-white p-8 overflow-y-auto"
+      className="flex flex-col h-full w-full bg-slate-950/60 backdrop-blur-md text-white p-8 overflow-y-auto"
     >
       <div className="flex items-center justify-between mb-12">
         <button 
