@@ -15,13 +15,12 @@ export const DIFFICULTY_MULTIPLIERS = {
 
 export const LEVEL_CONFIGS = [
   { level: 1, floors: 3, shafts: 1, maxWaiters: 4, bg: 'bg-slate-900' },
-  { level: 2, floors: 3, shafts: 1, maxWaiters: 5, bg: 'bg-slate-800' },
-  { level: 3, floors: 4, shafts: 1, maxWaiters: 6, bg: 'bg-slate-900' },
-  { level: 4, floors: 4, shafts: 2, maxWaiters: 7, bg: 'bg-blue-950' },
-  { level: 5, floors: 5, shafts: 2, maxWaiters: 8, bg: 'bg-blue-900' },
-  { level: 6, floors: 5, shafts: 2, maxWaiters: 9, bg: 'bg-blue-950' },
-  { level: 7, floors: 7, shafts: 2, maxWaiters: 10, bg: 'bg-indigo-950' },
-  { level: 8, floors: 8, shafts: 3, maxWaiters: 12, bg: 'bg-indigo-900' },
-  { level: 9, floors: 9, shafts: 3, maxWaiters: 15, bg: 'bg-indigo-950' },
-  { level: 10, floors: 10, shafts: 3, maxWaiters: 20, bg: 'bg-purple-950' },
+  { level: 2, floors: 4, shafts: 1, maxWaiters: 5, bg: 'bg-slate-800' },
+  { level: 3, floors: 4, shafts: 2, maxWaiters: 6, bg: 'bg-slate-900' },
+  { level: 4, floors: 5, shafts: 2, maxWaiters: 7, bg: 'bg-blue-950' },
+  { level: 5, floors: 6, shafts: 2, maxWaiters: 8, bg: 'bg-blue-900' },
+  { level: 6, floors: 7, shafts: 3, maxWaiters: 9, bg: 'bg-blue-950' },
+  { level: 7, floors: 8, shafts: 3, maxWaiters: 10, bg: 'bg-indigo-950' },
+  { level: 8, floors: 9, shafts: 3, maxWaiters: 12, bg: 'bg-indigo-900' },
+  { level: 9, floors: 10, shafts: 3, maxWaiters: 15, bg: 'bg-indigo-950' },
 ];

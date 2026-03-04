@@ -62,6 +62,31 @@ export default function Settings({ state, setState }: Props) {
         </div>
 
         <div className="space-y-4">
+          <div className="flex items-center gap-3 text-slate-300 mb-2">
+            <Music size={20} />
+            <span className="font-bold uppercase tracking-wider text-sm">Music Track</span>
+          </div>
+          <div className="flex gap-2">
+            {[0, 1, 2].map((track) => (
+              <button
+                key={track}
+                onClick={() => {
+                  playSound('tap', state.settings.sfxVolume);
+                  setState(s => ({ ...s, settings: { ...s.settings, musicTrack: track } }));
+                }}
+                className={`flex-1 py-2 rounded-lg font-bold transition-colors ${
+                  (state.settings.musicTrack || 0) === track 
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+                }`}
+              >
+                Track {track + 1}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3 text-slate-300">
               <Volume2 size={20} />

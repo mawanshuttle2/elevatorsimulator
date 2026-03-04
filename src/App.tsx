@@ -22,6 +22,7 @@ const initialState: GlobalState = {
   settings: {
     musicVolume: 50,
     sfxVolume: 50,
+    musicTrack: 0,
   },
   currentLevel: 1,
   lastScore: 0,
@@ -48,7 +49,7 @@ export default function App() {
   // Initialize audio on mount
   useEffect(() => {
     initAudio();
-    playBGM(state.settings.musicVolume);
+    playBGM(state.settings.musicVolume, state.settings.musicTrack);
 
     // Add interaction listener to bypass browser autoplay policy
     const handleInteraction = () => {
@@ -74,6 +75,11 @@ export default function App() {
   useEffect(() => {
     updateBGMVolume(state.settings.musicVolume);
   }, [state.settings.musicVolume]);
+
+  // Update BGM track when settings change
+  useEffect(() => {
+    playBGM(state.settings.musicVolume, state.settings.musicTrack);
+  }, [state.settings.musicTrack]);
 
   // Save to localStorage whenever relevant state changes
   useEffect(() => {

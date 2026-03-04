@@ -14,6 +14,7 @@ export interface LiftModel {
 export interface GameSettings {
   musicVolume: number;
   sfxVolume: number;
+  musicTrack: number; // 0, 1, or 2 for BGM 1, 2, 3
 }
 
 export interface GlobalState {

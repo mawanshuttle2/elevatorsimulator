@@ -108,7 +108,7 @@ export default function GameActive({ state, setState }: Props) {
                   style={{ backgroundImage: `url(/assets/images/floors/floor-${floorNum}.jpg)` }}
                 >
                   {/* Dark overlay to ensure text and game elements remain visible */}
-                  <div className="absolute inset-0 bg-slate-950/40" />
+                  <div className="absolute inset-0 bg-slate-950/10" />
                   
                   {/* Floor Label */}
                   <div className="absolute left-2 bottom-2 text-white font-black text-4xl opacity-60 select-none z-10 drop-shadow-lg">

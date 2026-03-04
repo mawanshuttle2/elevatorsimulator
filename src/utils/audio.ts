@@ -4,12 +4,21 @@ import { Howl } from 'howler';
 const SOUND_PATHS = {
   ding: '/assets/sounds/ding.mp3',
   tap: '/assets/sounds/tap.mp3',
-  bgm: '/assets/sounds/bgm.mp3',
+  bgm1: '/assets/sounds/bgm.mp3',
+  bgm2: '/assets/sounds/bgm2.mp3',
+  bgm3: '/assets/sounds/bgm3.mp3',
 };
 
-let bgm: Howl | null = null;
+let bgms: Howl[] = [];
+let currentTrackIndex = 0;
+let lastVolume = 50;
 let sfx: Record<string, Howl> = {};
 let isInitialized = false;
+
+const playNextTrack = () => {
+  const nextIndex = (currentTrackIndex + 1) % bgms.length;
+  playBGM(lastVolume, nextIndex);
+};
 
 export const initAudio = () => {
   if (isInitialized) return;
@@ -19,11 +28,26 @@ export const initAudio = () => {
     tap: new Howl({ src: [SOUND_PATHS.tap] }),
   };
 
-  bgm = new Howl({
-    src: [SOUND_PATHS.bgm],
-    loop: true,
-    autoplay: false,
-  });
+  bgms = [
+    new Howl({ 
+      src: [SOUND_PATHS.bgm1], 
+      loop: false, 
+      autoplay: false,
+      onend: playNextTrack
+    }),
+    new Howl({ 
+      src: [SOUND_PATHS.bgm2], 
+      loop: false, 
+      autoplay: false,
+      onend: playNextTrack
+    }),
+    new Howl({ 
+      src: [SOUND_PATHS.bgm3], 
+      loop: false, 
+      autoplay: false,
+      onend: playNextTrack
+    }),
+  ];
 
   isInitialized = true;
 };
@@ -34,27 +58,40 @@ export const playSound = (sound: 'ding' | 'tap', volume: number) => {
   sfx[sound].play();
 };
 
-export const playBGM = (volume: number) => {
-  if (!bgm) return;
-  bgm.volume(volume / 100);
-  if (!bgm.playing()) {
-    bgm.play();
+export const playBGM = (volume: number, trackIndex: number = 0) => {
+  if (bgms.length === 0) return;
+  
+  lastVolume = volume;
+
+  // Stop other tracks if playing
+  bgms.forEach((bgm, index) => {
+    if (index !== trackIndex && bgm.playing()) {
+      bgm.stop();
+    }
+  });
+
+  const targetBGM = bgms[trackIndex];
+  if (targetBGM) {
+    targetBGM.volume(volume / 100);
+    if (!targetBGM.playing()) {
+      targetBGM.play();
+    }
+    currentTrackIndex = trackIndex;
   }
 };
 
 export const resumeBGM = () => {
-  if (!bgm) return;
-  if (!bgm.playing()) {
-    bgm.play();
+  const targetBGM = bgms[currentTrackIndex];
+  if (targetBGM && !targetBGM.playing()) {
+    targetBGM.play();
   }
 };
 
 export const stopBGM = () => {
-  if (!bgm) return;
-  bgm.stop();
+  bgms.forEach(bgm => bgm.stop());
 };
 
 export const updateBGMVolume = (volume: number) => {
-  if (!bgm) return;
-  bgm.volume(volume / 100);
+  lastVolume = volume;
+  bgms.forEach(bgm => bgm.volume(volume / 100));
 };
